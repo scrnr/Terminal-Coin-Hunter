@@ -5,69 +5,94 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="Levels\Hard\Level01.txt">
+    <None Remove="Levels\Hard\Level01.txt" />
+    <None Remove="Levels\Hard\Level02.txt" />
+    <None Remove="Levels\Hard\Level03.txt" />
+    <None Remove="Levels\Hard\Level04.txt" />
+    <None Remove="Levels\Hard\Level05.txt" />
+    <None Remove="Levels\Hard\Level06.txt" />
+    <None Remove="Levels\Hard\Level07.txt" />
+    <None Remove="Levels\Hard\Level08.txt" />
+    <None Remove="Levels\Hard\Level09.txt" />
+    <None Remove="Levels\Hard\Level10.txt" />
+    <None Remove="Levels\Normal\Level01.txt" />
+    <None Remove="Levels\Normal\Level02.txt" />
+    <None Remove="Levels\Normal\Level03.txt" />
+    <None Remove="Levels\Normal\Level04.txt" />
+    <None Remove="Levels\Normal\Level05.txt" />
+    <None Remove="Levels\Normal\Level06.txt" />
+    <None Remove="Levels\Normal\Level07.txt" />
+    <None Remove="Levels\Normal\Level08.txt" />
+    <None Remove="Levels\Normal\Level09.txt" />
+    <None Remove="Levels\Normal\Level10.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="Levels\Hard\Level01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level02.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level03.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level04.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level05.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level06.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level07.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level08.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level08.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level09.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level09.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Hard\Level10.txt">
+    </Content>
+    <Content Include="Levels\Hard\Level10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level01.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level01.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level02.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level02.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level03.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level03.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level04.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level04.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level05.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level05.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level06.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level06.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level07.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level07.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level08.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level08.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level09.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level09.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Levels\Normal\Level10.txt">
+    </Content>
+    <Content Include="Levels\Normal\Level10.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
   </ItemGroup>
 
 </Project>
