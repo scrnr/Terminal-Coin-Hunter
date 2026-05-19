@@ -142,7 +142,8 @@ namespace TerminalCoinHunter.Source
             screen.NextLevelSelected += _sound.HandlerConfirm;
             screen.LevelRestarted += _sound.HandlerConfirm;
             screen.GameOver += _sound.HandlerError;
-            screen.Subscribe(_sound);
+            screen.CoinCollected += _sound.HandleCoinCollected;
+            screen.PlayerHitTheWall += _sound.HandlerError;
         }
 
         private void Unsubscribe(LevelScreen screen)
@@ -152,7 +153,8 @@ namespace TerminalCoinHunter.Source
             screen.NextLevelSelected -= _sound.HandlerConfirm;
             screen.LevelRestarted -= _sound.HandlerConfirm;
             screen.GameOver -= _sound.HandlerError;
-            screen.Unsubscribe(_sound);
+            screen.CoinCollected -= _sound.HandleCoinCollected;
+            screen.PlayerHitTheWall -= _sound.HandlerError;
         }
     }
 }

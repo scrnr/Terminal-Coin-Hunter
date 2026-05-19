@@ -1,10 +1,9 @@
-﻿namespace TerminalCoinHunter.Source.Entities
+﻿using TerminalCoinHunter.Source.Enums;
+
+namespace TerminalCoinHunter.Source.Entities
 {
     internal class Player : Entity
     {
-        public event Action? CoinCollected;
-        public event Action? WallHit;
-
         public int Coins { get; private set; }
 
         public Player(Point position, GameMap gameMap) : base(position, gameMap)
@@ -12,26 +11,27 @@
             Coins = 0;
         }
 
-        public void Move(Point position)
+        public MoveResult Move(Point position)
         {
             if (_gameMap.IsWall(position))
-            {
-                OnWallHit();
-                return;
-            }
+                return MoveResult.HitWall;
+
+            MoveResult result = MoveResult.None;
 
             if (_gameMap.IsCoin(position))
             {
                 if (_gameMap.TryCollectCoin(position))
                 {
                     Coins++;
-                    OnCoinCollected();
+                    result = MoveResult.CoinCollected;
                 }
             }
 
             OldPosition = Position;
             Position = position;
             UpdateDirection();
+
+            return result;
         }
 
         public bool CheckEnemyCollision(Point enemyPosition) => enemyPosition == Position;
@@ -41,8 +41,5 @@
             base.Reset();
             Coins = 0;
         }
-
-        private void OnCoinCollected() => CoinCollected?.Invoke();
-        private void OnWallHit() => WallHit?.Invoke();
     }
 }

@@ -10,6 +10,8 @@ namespace TerminalCoinHunter.Source.Screens
         public event Action? GameOver;
         public event Action? LevelRestarted;
         public event Action? NextLevelSelected;
+        public event Action? CoinCollected;
+        public event Action? PlayerHitTheWall;
 
         private const string LoseText = "=== You are dead ===";
         private const string PauseText = "=== PAUSE ===";
@@ -84,22 +86,12 @@ namespace TerminalCoinHunter.Source.Screens
             }
         }
 
-        public void Subscribe(Sound sound)
-        {
-            _player.CoinCollected += sound.HandleCoinCollected;
-            _player.WallHit += sound.HandlerError;
-        }
-
-        public void Unsubscribe(Sound sound)
-        {
-            _player.CoinCollected -= sound.HandleCoinCollected;
-            _player.WallHit -= sound.HandlerError;
-        }
-
         private void OnGameContinued() => GameContinued?.Invoke();
         private void OnLevelRestarted() => LevelRestarted?.Invoke();
         private void OnNextLevelSelected() => NextLevelSelected?.Invoke();
         private void OnGameOver() => GameOver?.Invoke();
+        private void OnCoinCollected() => CoinCollected?.Invoke();
+        private void OnPlayerHitTheWall() => PlayerHitTheWall?.Invoke();
 
         private bool HandleEnemyCollision()
         {
@@ -114,7 +106,20 @@ namespace TerminalCoinHunter.Source.Screens
             return false;
         }
 
-        private bool TryHandleWinCondition()
+        private void HandleMoveResult(MoveResult moveResult)
+        {
+            switch (moveResult)
+            {
+                case MoveResult.CoinCollected:
+                    OnCoinCollected();
+                    break;
+                case MoveResult.HitWall:
+                    OnPlayerHitTheWall();
+                    break;
+            }
+        }
+
+        private bool HandleWinCondition()
         {
             if (_player.Coins == _level.Coins.Count)
             {
@@ -129,20 +134,21 @@ namespace TerminalCoinHunter.Source.Screens
         private void UpdateGameplay()
         {
             ConsoleKey key = _inputHandler.ReadGameplayKey();
+            MoveResult moveResult = MoveResult.None;
 
             switch (key)
             {
                 case ConsoleKey.UpArrow:
-                    _player.Move(_player.Position.Add(0, -1));
+                    moveResult = _player.Move(_player.Position.Add(0, -1));
                     break;
                 case ConsoleKey.DownArrow:
-                    _player.Move(_player.Position.Add(0, 1));
+                    moveResult = _player.Move(_player.Position.Add(0, 1));
                     break;
                 case ConsoleKey.LeftArrow:
-                    _player.Move(_player.Position.Add(-1, 0));
+                    moveResult = _player.Move(_player.Position.Add(-1, 0));
                     break;
                 case ConsoleKey.RightArrow:
-                    _player.Move(_player.Position.Add(1, 0));
+                    moveResult = _player.Move(_player.Position.Add(1, 0));
                     break;
                 case ConsoleKey.M:
                     OnMuteToggled();
@@ -152,15 +158,22 @@ namespace TerminalCoinHunter.Source.Screens
                     return;
             }
 
-            if (TryHandleWinCondition())
+            if (HandleEnemyCollision())
                 return;
+
+            if (HandleWinCondition() && moveResult == MoveResult.CoinCollected)
+            {
+                OnCoinCollected();
+
+                return;
+            }
+
+            _enemy.Move(_player.Position);
 
             if (HandleEnemyCollision())
                 return;
 
-            _enemy.Move(_player.Position);
-
-            HandleEnemyCollision();
+            HandleMoveResult(moveResult);
         }
 
         private void UpdateLoseScreen()
