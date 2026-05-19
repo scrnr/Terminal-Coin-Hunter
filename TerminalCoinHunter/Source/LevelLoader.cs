@@ -35,7 +35,7 @@ namespace TerminalCoinHunter.Source
         {
             Reset();
 
-            string folder = $"Levels/{difficulty.ToString()}";
+            string folder = Path.Combine("Levels", difficulty.ToString());
 
             if (!Directory.Exists(folder))
                 throw new InvalidDataException($"Folder '{folder}' does not exist");
@@ -56,7 +56,6 @@ namespace TerminalCoinHunter.Source
 
                 Tile[,] grid = new Tile[lines.Length, width];
 
-                Point coinPosition = new Point();
                 Point enemyPosition = new Point();
                 Point playerPosition = new Point();
 
@@ -85,8 +84,7 @@ namespace TerminalCoinHunter.Source
                                 enemyCount++;
                                 break;
                             case 'C':
-                                coinPosition = new Point(j, i);
-                                coins.Add(coinPosition, new Coin());
+                                coins.Add(new Point(j, i), new Coin());
                                 break;
                             case '.':
                                 break;
