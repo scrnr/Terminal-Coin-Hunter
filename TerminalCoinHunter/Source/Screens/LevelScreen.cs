@@ -172,6 +172,9 @@ namespace TerminalCoinHunter.Source.Screens
                     Reset();
                     _levelState = LevelState.Playing;
                     break;
+                case ConsoleKey.M:
+                    OnMuteToggled();
+                    break;
                 case ConsoleKey.Escape:
                     ExitRequest();
                     break;
@@ -186,6 +189,9 @@ namespace TerminalCoinHunter.Source.Screens
                     OnGameContinued();
                     _levelState = LevelState.Playing;
                     break;
+                case ConsoleKey.M:
+                    OnMuteToggled();
+                    break;
                 case ConsoleKey.Escape:
                     ExitRequest();
                     break;
@@ -199,6 +205,9 @@ namespace TerminalCoinHunter.Source.Screens
                 case ConsoleKey.Enter:
                     OnNextLevelSelected();
                     IsComplete = true;
+                    break;
+                case ConsoleKey.M:
+                    OnMuteToggled();
                     break;
                 case ConsoleKey.Escape:
                     ExitRequest();

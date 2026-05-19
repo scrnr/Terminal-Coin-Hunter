@@ -3,11 +3,9 @@
     internal class Sound
     {
         private bool _isMute;
-        private bool _isPlaying;
 
         public Sound()
         {
-            _isPlaying = false;
             _isMute = false;
         }
 
@@ -29,15 +27,8 @@
 
         private void Play(int frequency, int duration)
         {
-            if (!_isPlaying && !_isMute)
-            {
-                Task.Run(() =>
-                {
-                    _isPlaying = true;
-                    Console.Beep(frequency, duration);
-                    _isPlaying = false;
-                });
-            }
+            if (!_isMute)
+                Task.Run(() => Console.Beep(frequency, duration));
         }
     }
 }

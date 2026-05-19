@@ -25,11 +25,11 @@
                 );
         }
 
-        public ConsoleKey ReadLoseKey() => GetKey(ConsoleKey.R, ConsoleKey.Escape);
+        public ConsoleKey ReadLoseKey() => GetKey(ConsoleKey.R, ConsoleKey.M, ConsoleKey.Escape);
 
-        public ConsoleKey ReadWinKey() => GetKey(ConsoleKey.Enter, ConsoleKey.Escape);
+        public ConsoleKey ReadWinKey() => GetKey(ConsoleKey.Enter, ConsoleKey.M, ConsoleKey.Escape);
 
-        public ConsoleKey ReadPauseKey() => GetKey(ConsoleKey.Enter, ConsoleKey.Escape);
+        public ConsoleKey ReadPauseKey() => ReadWinKey();
 
         public ConsoleKey ReadErrorKey() => GetKey(ConsoleKey.Enter);
 
