@@ -24,6 +24,7 @@ namespace TerminalCoinHunter.Source.Entities
 
             OldPosition = Position;
             Position = nextPosition;
+            UpdateDirection();
         }
 
         private int GetDiff(int current, int target)

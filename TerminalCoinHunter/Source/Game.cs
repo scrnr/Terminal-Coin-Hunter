@@ -29,6 +29,8 @@ namespace TerminalCoinHunter.Source
         {
             Console.Title = Title;
             Console.CursorVisible = false;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.OutputEncoding = Encoding.Unicode;
         }
 

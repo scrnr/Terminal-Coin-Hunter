@@ -23,8 +23,8 @@ namespace TerminalCoinHunter.Source.UI
             ClearOverlay();
             ClearEntity(enemy.OldPosition);
             DrawCoins(coins);
-            DrawPlayer(player.Position, player.OldPosition);
-            DrawEnemy(enemy.Position);
+            DrawPlayer(player.Position, player.OldPosition, player.Symbol);
+            DrawEnemy(enemy.Position, enemy.Symbol);
             DrawCoinAmount(player.Coins, coins.Count);
             DrawControls(controls);
         }
@@ -42,7 +42,7 @@ namespace TerminalCoinHunter.Source.UI
         public void DrawPause(string overlayText, string[] controls)
         {
             ClearOverlay();
-            DrawOverlay(overlayText, ConsoleColor.Gray);
+            DrawOverlay(overlayText, ConsoleColor.DarkGray);
             DrawControls(controls);
         }
 
@@ -51,11 +51,11 @@ namespace TerminalCoinHunter.Source.UI
             ClearOverlay();
             DrawOverlay(overlayText, ConsoleColor.Green);
             DrawCoinAmount(player.Coins, player.Coins);
-            DrawPlayer(player.Position, player.OldPosition);
+            DrawPlayer(player.Position, player.OldPosition, player.Symbol);
             DrawControls(controls);
         }
 
-        public void Init(Level level, string[] controls)
+        public void Init(Level level, char playerSymbol, char enemySymbol, string[] controls)
         {
             ClearConsole();
 
@@ -68,8 +68,8 @@ namespace TerminalCoinHunter.Source.UI
             _controlsPosition = new Point(1, Console.CursorTop + 1);
             DrawControls(controls);
 
-            DrawPlayer(level.PlayerStartPosition);
-            DrawEnemy(level.EnemyStartPosition);
+            DrawPlayer(level.PlayerStartPosition, playerSymbol);
+            DrawEnemy(level.EnemyStartPosition, enemySymbol);
             DrawCoins(level.Coins);
         }
 
@@ -114,22 +114,22 @@ namespace TerminalCoinHunter.Source.UI
             }
         }
 
-        private void DrawEnemy(Point position)
+        private void DrawEnemy(Point position, char symbol)
         {
-            DrawSymbol(position.Add(_mapStartPosition), _theme.EnemySymbol, _theme.EnemyColor);
+            DrawSymbol(position.Add(_mapStartPosition), symbol, _theme.EnemyColor);
         }
 
-        private void DrawPlayer(Point position)
+        private void DrawPlayer(Point position, char symbol)
         {
-            DrawSymbol(position.Add(_mapStartPosition), _theme.PlayerSymbol, _theme.PlayerColor);
+            DrawSymbol(position.Add(_mapStartPosition), symbol, _theme.PlayerColor);
         }
 
-        private void DrawPlayer(Point position, Point oldPosition)
+        private void DrawPlayer(Point position, Point oldPosition, char symbol)
         {
             if (position != oldPosition)
                 ClearEntity(oldPosition);
 
-            DrawPlayer(position);
+            DrawPlayer(position, symbol);
         }
 
         private void DrawMap(Tile[,] map)

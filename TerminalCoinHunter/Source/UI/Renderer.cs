@@ -16,7 +16,7 @@
         {
             Console.ForegroundColor = color;
             DrawText(position, text);
-            Console.ResetColor();
+            ResetColor();
         }
 
         protected void ClearLine(int top)
@@ -39,7 +39,7 @@
         {
             Console.ForegroundColor = color;
             DrawAnimationText(text, timeout);
-            Console.ResetColor();
+            ResetColor();
         }
 
         protected void DrawEmptyLine() => Console.WriteLine();
@@ -56,9 +56,11 @@
         {
             Console.ForegroundColor = color;
             DrawSymbol(position, symbol);
-            Console.ResetColor();
+            ResetColor();
         }
 
         protected void SetCursorPosition(Point position) => Console.SetCursorPosition(position.X, position.Y);
+
+        private void ResetColor() => Console.ForegroundColor = ConsoleColor.White;
     }
 }

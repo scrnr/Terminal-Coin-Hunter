@@ -4,23 +4,16 @@ namespace TerminalCoinHunter.Source.UI
 {
     internal class Theme
     {
-        public char PlayerSymbol { get; init; }
         public char DeathSymbol { get; init; }
-        public char EnemySymbol { get; init; }
         public char MenuCursorSymbol { get; init; }
+        public char WallSymbol { get; init; }
 
         public ConsoleColor PlayerColor { get; init; }
+        public ConsoleColor EnemyColor { get; init; }
         public ConsoleColor MenuColor { get; init; }
-        public ConsoleColor CoinNotCollectedColor { get; init; }
 
-        public ConsoleColor EnemyColor
-        {
-            get => _difficulty switch
-            {
-                Difficulty.Hard => ConsoleColor.DarkRed,
-                _ => ConsoleColor.Red
-            };
-        }
+        public ConsoleColor WallColor { get; init; }
+        public ConsoleColor CoinNotCollectedColor { get; init; }
 
         public string CoinName
         {
@@ -36,7 +29,7 @@ namespace TerminalCoinHunter.Source.UI
             get => _difficulty switch
             {
                 Difficulty.Hard => '\u2666',
-                _ => '\u25CB'
+                _ => '\u25C6'
             };
         }
 
@@ -49,38 +42,21 @@ namespace TerminalCoinHunter.Source.UI
             };
         }
 
-        public char WallSymbol
-        {
-            get => _difficulty switch
-            {
-                Difficulty.Hard => '\u2591',
-                _ => '\u2593'
-            };
-        }
-
-        public ConsoleColor WallColor
-        {
-            get => _difficulty switch
-            {
-                Difficulty.Hard => ConsoleColor.Gray,
-                _ => ConsoleColor.White
-            };
-        }
-
         private readonly Difficulty _difficulty;
 
         public Theme(Difficulty difficulty)
         {
             _difficulty = difficulty;
 
-            PlayerSymbol = '\u263a';
-            EnemySymbol = '\u263b';
             DeathSymbol = '\u2020';
-            MenuCursorSymbol = '\u2192';
+            MenuCursorSymbol = '\u261E';
+            WallSymbol = '\u2593';
 
             PlayerColor = ConsoleColor.Green;
+            EnemyColor = ConsoleColor.Red;
             CoinNotCollectedColor = ConsoleColor.DarkGray;
             MenuColor = ConsoleColor.Magenta;
+            WallColor = ConsoleColor.White;
         }
     }
 }

@@ -31,6 +31,7 @@
 
             OldPosition = Position;
             Position = position;
+            UpdateDirection();
         }
 
         public bool CheckEnemyCollision(Point enemyPosition) => enemyPosition == Position;

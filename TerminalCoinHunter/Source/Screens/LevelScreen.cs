@@ -61,7 +61,7 @@ namespace TerminalCoinHunter.Source.Screens
 
         public override void Init()
         {
-            _renderer.Init(_level, ControlsText.Gameplay);
+            _renderer.Init(_level, _player.Symbol, _enemy.Symbol, ControlsText.Gameplay);
             _levelState = LevelState.Playing;
         }
 
@@ -211,7 +211,7 @@ namespace TerminalCoinHunter.Source.Screens
             _level.Reset();
             _player.Reset();
             _enemy.Reset();
-            _renderer.Init(_level, ControlsText.Gameplay);
+            _renderer.Init(_level, _player.Symbol, _enemy.Symbol, ControlsText.Gameplay);
         }
     }
 }
