@@ -32,6 +32,7 @@ namespace TerminalCoinHunter.Source
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
             Console.OutputEncoding = Encoding.Unicode;
+            Thread.Sleep(500);
         }
 
         public void Run()

@@ -49,7 +49,7 @@ namespace TerminalCoinHunter.Source.Screens
                     _renderer.DrawGameplay(_player, _enemy, _level.Coins, ControlsText.Gameplay);
                     break;
                 case LevelState.Lose:
-                    _renderer.DrawLose(LoseText, _player, _enemy, ControlsText.Lose);
+                    _renderer.DrawLose(LoseText, _player, _enemy, _level.Coins, ControlsText.Lose);
                     break;
                 case LevelState.Pause:
                     _renderer.DrawPause(PauseText, ControlsText.Pause);

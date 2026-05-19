@@ -29,13 +29,14 @@ namespace TerminalCoinHunter.Source.UI
             DrawControls(controls);
         }
 
-        public void DrawLose(string overlayText, Player player, Enemy enemy, string[] controls)
+        public void DrawLose(string overlayText, Player player, Enemy enemy, Dictionary<Point, Coin> coins, string[] controls)
         {
             ClearOverlay();
             DrawOverlay(overlayText, ConsoleColor.Red);
             ClearEntity(player.OldPosition);
             ClearEntity(enemy.OldPosition);
             DrawSymbol(player.Position.Add(_mapStartPosition), _theme.DeathSymbol);
+            DrawCoins(coins);
             DrawControls(controls);
         }
 
