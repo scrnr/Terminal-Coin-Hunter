@@ -37,6 +37,7 @@ namespace TerminalCoinHunter.Source.Entities
         {
             OldPosition = _startPosition;
             Position = _startPosition;
+            _direction = Direction.Right;
         }
 
         protected void UpdateDirection()
