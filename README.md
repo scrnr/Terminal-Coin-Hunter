@@ -31,9 +31,9 @@ The game contains 10 Normal levels and 10 Hard levels with different maze layout
 | :--- | :--- |
 | `↑ / ↓ / ← / →` | Move |
 | `Enter` | Select / Next Level |
-| `R` | Restart Level (after Game Over) |
+| `R` | Restart Level |
 | `M` | Mute / Unmute Sound |
-| `Esc` | Pause / Exit |
+| `Esc` | Exit |
 
 ## Screenshots
 
@@ -47,8 +47,8 @@ The game contains 10 Normal levels and 10 Hard levels with different maze layout
 
 ## How to Run
 
-1. Go to the **[Releases](https://github.com/scrnr/Terminal-Coin-Hunter/releases/tag/v1.0)** page.
-2. Download the `TerminalCoinHunter-v1.0.zip` file.
+1. Go to the **[Releases](https://github.com/scrnr/Terminal-Coin-Hunter/releases/latest)** page.
+2. Download the `TerminalCoinHunter-v1.1.zip` file.
 3. Extract the archive.
 4. Run `TerminalCoinHunter.exe`
 
