@@ -45,6 +45,8 @@ namespace TerminalCoinHunter.Source
             if (files.Length == 0)
                 throw new InvalidDataException($"No levels files were found in '{folder}'");
 
+            int levelNumber = 1;
+
             foreach (string file in files)
             {
                 string[] lines = File.ReadAllLines(file);
@@ -97,7 +99,8 @@ namespace TerminalCoinHunter.Source
                 }
 
                 Validate(playerCount, enemyCount, coins.Count, messageExceptionStart);
-                _levels.Add(new Level(playerPosition, enemyPosition, coins, grid));
+                _levels.Add(new Level($"Level {levelNumber}", playerPosition, enemyPosition, coins, grid));
+                levelNumber++;
             }
         }
 

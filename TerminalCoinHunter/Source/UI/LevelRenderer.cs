@@ -60,8 +60,11 @@ namespace TerminalCoinHunter.Source.UI
         {
             ClearConsole();
 
-            DrawText(new Point(), $"{_theme.CoinName}: ");
-            _coinAmountPosition = new Point(_theme.CoinName.Length + 2, 0);
+            DrawText(new Point(), level.Name);
+            DrawText(new Point(level.Name.Length, 0), $" | {_theme.CoinName}: ");
+
+            int coinAmountLeftPosition = level.Name.Length + _theme.CoinName.Length + 5;
+            _coinAmountPosition = new Point(coinAmountLeftPosition, 0);
             DrawCoinAmount(0, level.Coins.Count);
 
             DrawMap(level.Grid);
@@ -111,7 +114,7 @@ namespace TerminalCoinHunter.Source.UI
             {
                 ClearLine(position.Y);
                 DrawText(position, line);
-                position = position.Add(0, 2);
+                position = position.Add(0, 1);
             }
         }
 
