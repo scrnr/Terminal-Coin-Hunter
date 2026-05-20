@@ -139,7 +139,6 @@ namespace TerminalCoinHunter.Source
         private void Subscribe(LevelScreen screen)
         {
             screen.MuteToggled += _sound.HandleMuteToggled;
-            screen.GameContinued += _sound.HandlerConfirm;
             screen.NextLevelSelected += _sound.HandlerConfirm;
             screen.LevelRestarted += _sound.HandlerConfirm;
             screen.GameOver += _sound.HandlerError;
@@ -150,7 +149,6 @@ namespace TerminalCoinHunter.Source
         private void Unsubscribe(LevelScreen screen)
         {
             screen.MuteToggled -= _sound.HandleMuteToggled;
-            screen.GameContinued -= _sound.HandlerConfirm;
             screen.NextLevelSelected -= _sound.HandlerConfirm;
             screen.LevelRestarted -= _sound.HandlerConfirm;
             screen.GameOver -= _sound.HandlerError;

@@ -5,33 +5,26 @@
         public readonly static string[] Menu = new string[]
         {
             "----------",
-            "↑/↓ - Navigation",
-            "M - Mute",
+            "↑ / ↓ - Navigation",
             "Enter - Start",
+            "M - Mute",
             "ESC - Exit"
         };
 
         public readonly static string[] Gameplay = new string[]
         {
             "----------",
-            "↑/↓/←/→ - Moving",
+            "↑ / ↓ / ← / → - Moving",
+            "R - Restart Level",
             "M - Mute",
-            "ESC - Pause"
-        };
-
-        public readonly static string[] Pause = new string[]
-        {
-            "----------",
-            "M - Mute",
-            "Enter - Continue",
             "ESC - Exit"
         };
 
         public readonly static string[] Lose = new string[]
         {
             "----------",
+            "R - Restart Level",
             "M - Mute",
-            "R - Retry",
             "ESC - Exit"
         };
 
@@ -39,13 +32,14 @@
         {
             List<string> text = new List<string>();
             text.Add("----------");
-            text.Add("M - Mute");
 
             if (hasNextLevel)
                 text.Add("Enter - Next Level");
             else
                 text.Add("Enter - Restart Game");
 
+            text.Add("R - Restart Level");
+            text.Add("M - Mute");
             text.Add("ESC - Exit");
 
             return text.ToArray();

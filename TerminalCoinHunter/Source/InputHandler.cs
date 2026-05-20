@@ -20,6 +20,7 @@
                 ConsoleKey.DownArrow,
                 ConsoleKey.LeftArrow,
                 ConsoleKey.RightArrow,
+                ConsoleKey.R,
                 ConsoleKey.M,
                 ConsoleKey.Escape
                 );
@@ -27,9 +28,12 @@
 
         public ConsoleKey ReadLoseKey() => GetKey(ConsoleKey.R, ConsoleKey.M, ConsoleKey.Escape);
 
-        public ConsoleKey ReadWinKey() => GetKey(ConsoleKey.Enter, ConsoleKey.M, ConsoleKey.Escape);
-
-        public ConsoleKey ReadPauseKey() => ReadWinKey();
+        public ConsoleKey ReadWinKey() => GetKey(
+            ConsoleKey.Enter,
+            ConsoleKey.R,
+            ConsoleKey.M,
+            ConsoleKey.Escape
+            );
 
         public ConsoleKey ReadErrorKey() => GetKey(ConsoleKey.Enter);
 

@@ -5,7 +5,6 @@
         Init,
         Playing,
         Win,
-        Lose,
-        Pause
+        Lose
     }
 }

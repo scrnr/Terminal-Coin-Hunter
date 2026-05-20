@@ -5,6 +5,8 @@ namespace TerminalCoinHunter.Source.UI
 {
     internal class LevelRenderer : Renderer
     {
+        private const int ControlsHeight = 5;
+
         private readonly Point _mapStartPosition;
         private readonly Theme _theme;
 
@@ -110,11 +112,18 @@ namespace TerminalCoinHunter.Source.UI
         {
             Point position = _controlsPosition;
 
-            foreach (string line in text)
+            for (int i = 0; i < ControlsHeight; i++)
             {
                 ClearLine(position.Y);
+                position = position.Add(0, 2);
+            }
+
+            position = _controlsPosition;
+
+            foreach (string line in text)
+            {
                 DrawText(position, line);
-                position = position.Add(0, 1);
+                position = position.Add(0, 2);
             }
         }
 
