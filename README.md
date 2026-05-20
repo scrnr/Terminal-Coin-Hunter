@@ -21,8 +21,8 @@ The game contains 10 Normal levels and 10 Hard levels with different maze layout
 ## Built With
 
 <div>
-	<img src="https://github.com/devicons/devicon/blob/master/icons/csharp/csharp-original.svg" title="C#" width="70" height="70">&nbsp;
-	<img src="https://github.com/devicons/devicon/blob/master/icons/dot-net/dot-net-plain-wordmark.svg" title=".NET" width="70" height="70">&nbsp;
+	<img src="https://github.com/devicons/devicon/blob/master/icons/csharp/csharp-original.svg" title="C#" width="50" height="50">&nbsp;
+	<img src="https://github.com/devicons/devicon/blob/master/icons/dot-net/dot-net-plain-wordmark.svg" title=".NET" width="50" height="50">&nbsp;
 </div>
 
 ## Controls
@@ -44,6 +44,13 @@ The game contains 10 Normal levels and 10 Hard levels with different maze layout
 ### Hard Level
 
 ![Hard Level](https://github.com/scrnr/Terminal-Coin-Hunter/blob/main/TerminalCoinHunter/assets/hard-level.png)
+
+## How to Run
+
+1. Go to the **[Releases](https://github.com/scrnr/Terminal-Coin-Hunter/releases/tag/v1.0)** page.
+2. Download the `TerminalCoinHunter-v1.0.zip` file.
+3. Extract the archive.
+4. Run `TerminalCoinHunter.exe`
 
 ## Author
 
