@@ -26,6 +26,7 @@ namespace TerminalCoinHunter.Source.Screens
         private readonly bool _hasNextLevel;
 
         private LevelState _levelState;
+        private bool _restartRequested;
 
         public LevelScreen(Level level, Theme theme, InputHandler inputHandler, bool hasNextLevel) : base(inputHandler)
         {
@@ -33,6 +34,7 @@ namespace TerminalCoinHunter.Source.Screens
             _hasNextLevel = hasNextLevel;
             _renderer = new LevelRenderer(theme, new Point(0, 4));
             _levelState = LevelState.Init;
+            _restartRequested = false;
 
             GameMap gameMap = new GameMap(level);
             _player = new Player(level.PlayerStartPosition, gameMap);
@@ -64,6 +66,8 @@ namespace TerminalCoinHunter.Source.Screens
 
         public override void Update()
         {
+            _restartRequested = false;
+
             switch (_levelState)
             {
                 case LevelState.Playing:
@@ -129,6 +133,7 @@ namespace TerminalCoinHunter.Source.Screens
                 case ConsoleKey.R:
                     OnLevelRestarted();
                     Reset();
+                    _restartRequested = true;
                     _levelState = LevelState.Playing;
                     break;
                 case ConsoleKey.M:
@@ -143,6 +148,9 @@ namespace TerminalCoinHunter.Source.Screens
         private void UpdateGameplay()
         {
             MoveResult moveResult = ProcessPlayerMove();
+
+            if (_restartRequested)
+                return;
 
             if (HandleEnemyCollision())
                 return;
