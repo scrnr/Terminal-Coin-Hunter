@@ -75,13 +75,26 @@ namespace TerminalCoinHunter.Source.Screens
                     UpdateGameplay();
                     break;
                 case LevelState.Pause:
-                    UpdatePauseScreen();
+                    HandleScreenInput(_inputHandler.ReadPauseKey(), ConsoleKey.Enter, () =>
+                    {
+                        OnGameContinued();
+                        _levelState = LevelState.Playing;
+                    });
                     break;
                 case LevelState.Win:
-                    UpdateWinScreen();
+                    HandleScreenInput(_inputHandler.ReadWinKey(), ConsoleKey.Enter, () =>
+                    {
+                        OnNextLevelSelected();
+                        IsComplete = true;
+                    });
                     break;
                 case LevelState.Lose:
-                    UpdateLoseScreen();
+                    HandleScreenInput(_inputHandler.ReadLoseKey(), ConsoleKey.R, () =>
+                    {
+                        OnLevelRestarted();
+                        Reset();
+                        _levelState = LevelState.Playing;
+                    });
                     break;
             }
         }
@@ -119,7 +132,7 @@ namespace TerminalCoinHunter.Source.Screens
             }
         }
 
-        private bool HandleWinCondition()
+        private bool CheckWinCondition()
         {
             if (_player.Coins == _level.Coins.Count)
             {
@@ -133,35 +146,12 @@ namespace TerminalCoinHunter.Source.Screens
 
         private void UpdateGameplay()
         {
-            ConsoleKey key = _inputHandler.ReadGameplayKey();
-            MoveResult moveResult = MoveResult.None;
-
-            switch (key)
-            {
-                case ConsoleKey.UpArrow:
-                    moveResult = _player.Move(_player.Position.Add(0, -1));
-                    break;
-                case ConsoleKey.DownArrow:
-                    moveResult = _player.Move(_player.Position.Add(0, 1));
-                    break;
-                case ConsoleKey.LeftArrow:
-                    moveResult = _player.Move(_player.Position.Add(-1, 0));
-                    break;
-                case ConsoleKey.RightArrow:
-                    moveResult = _player.Move(_player.Position.Add(1, 0));
-                    break;
-                case ConsoleKey.M:
-                    OnMuteToggled();
-                    return;
-                case ConsoleKey.Escape:
-                    _levelState = LevelState.Pause;
-                    return;
-            }
+            MoveResult moveResult = ProcessPlayerMove();
 
             if (HandleEnemyCollision())
                 return;
 
-            if (HandleWinCondition() && moveResult == MoveResult.CoinCollected)
+            if (CheckWinCondition())
             {
                 OnCoinCollected();
 
@@ -176,56 +166,39 @@ namespace TerminalCoinHunter.Source.Screens
             HandleMoveResult(moveResult);
         }
 
-        private void UpdateLoseScreen()
+        private void HandleScreenInput(ConsoleKey pressedKey, ConsoleKey actionKey, Action onAction)
         {
-            switch (_inputHandler.ReadLoseKey())
-            {
-                case ConsoleKey.R:
-                    OnLevelRestarted();
-                    Reset();
-                    _levelState = LevelState.Playing;
-                    break;
-                case ConsoleKey.M:
-                    OnMuteToggled();
-                    break;
-                case ConsoleKey.Escape:
-                    ExitRequest();
-                    break;
-            }
+            if (pressedKey == actionKey)
+                onAction();
+
+            if (pressedKey == ConsoleKey.M)
+                OnMuteToggled();
+
+            if (pressedKey == ConsoleKey.Escape)
+                ExitRequest();
         }
 
-        private void UpdatePauseScreen()
+        private MoveResult ProcessPlayerMove()
         {
-            switch (_inputHandler.ReadPauseKey())
+            switch (_inputHandler.ReadGameplayKey())
             {
-                case ConsoleKey.Enter:
-                    OnGameContinued();
-                    _levelState = LevelState.Playing;
-                    break;
+                case ConsoleKey.UpArrow:
+                    return _player.Move(_player.Position.Add(0, -1));
+                case ConsoleKey.DownArrow:
+                    return _player.Move(_player.Position.Add(0, 1));
+                case ConsoleKey.LeftArrow:
+                    return _player.Move(_player.Position.Add(-1, 0));
+                case ConsoleKey.RightArrow:
+                    return _player.Move(_player.Position.Add(1, 0));
                 case ConsoleKey.M:
                     OnMuteToggled();
                     break;
                 case ConsoleKey.Escape:
-                    ExitRequest();
+                    _levelState = LevelState.Pause;
                     break;
             }
-        }
 
-        private void UpdateWinScreen()
-        {
-            switch (_inputHandler.ReadWinKey())
-            {
-                case ConsoleKey.Enter:
-                    OnNextLevelSelected();
-                    IsComplete = true;
-                    break;
-                case ConsoleKey.M:
-                    OnMuteToggled();
-                    break;
-                case ConsoleKey.Escape:
-                    ExitRequest();
-                    break;
-            }
+            return MoveResult.None;
         }
 
         private void Reset()
